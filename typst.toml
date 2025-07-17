@@ -1,0 +1,8 @@
+[package]
+name = "unofficial-cob"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+authors = ["Robin Eklind"]
+license = "0BSD"
+description = "Unofficial CoB (The Company of Biologists) template for Typst."
+repository = "https://github.com/mewmew/unofficial-cob"
