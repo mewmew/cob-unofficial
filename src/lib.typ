@@ -45,11 +45,11 @@
 	body
 }
 
-#let print-data-availability(body) = {
+#let data-availability(body) = {
 	print-availability("Data", body)
 }
 
-#let print-code-availability(body) = {
+#let code-availability(body) = {
 	print-availability("Code", body)
 }
 
@@ -84,6 +84,7 @@
 						h(1fr),
 						box(
 							inset: (bottom: -0.175cm),
+							// TODO: use PDF version of logo when Typst 0.14.0 is released.
 							image("/inc/COB_Publisher_Logo.svg"),
 						),
 					)
