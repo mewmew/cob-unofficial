@@ -1,6 +1,6 @@
 // Unofficial CoB (The Company of Biologists) template.
 
-#import "@preview/hallon:0.1.0"
+#import "@preview/hallon:0.1.2"
 
 // Fonts.
 #let font-serif      = "Nimbus Roman"
