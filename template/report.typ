@@ -1,5 +1,4 @@
 #import "@preview/cob-unofficial:0.1.0" as cob
-#import "@preview/cellpress-unofficial:0.1.0": toprule, midrule, bottomrule
 
 #show: cob.template.with(
 	title:   "Paper Title",
@@ -30,13 +29,13 @@
 #figure(
 	table(
 		columns: 3,
-		toprule(),
+		table.hline(),
 		table.header[*foo*][*bar*][*baz*],
-		midrule(),
+		table.hline(),
 		[a], [b], [c],
 		[a], [b], [c],
 		[a], [b], [c],
-		bottomrule(),
+		table.hline(),
 	),
 	caption: lorem(5),
 )

@@ -1,14 +1,18 @@
 // Unofficial CoB (The Company of Biologists) template.
 
-#import "@preview/cellpress-unofficial:0.1.0" as cellpress
 #import "@preview/hallon:0.1.0"
 
+// Fonts.
 #let font-serif      = "Nimbus Roman"
 #let font-sans-serif = "Nimbus Sans"
 
+// titcolor specifies the "super" title colour.
 #let titcolor = rgb(64, 193, 234) // CoB cyan
+// linkblue specifies the colour of links.
 #let linkblue = rgb(66, 93, 178)
 
+// print-supertitle displays the "super" title (i.e. "RESEARCH") on the front
+// page.
 #let print-supertitle(supertitle) = {
 	set text(font: font-sans-serif, size: 8pt, fill: titcolor, tracking: 0.5pt)
 	//show text: smallcaps // TODO: figure out how to fix (need Cap version of font)?
@@ -17,6 +21,8 @@
 	block(supertitle)
 }
 
+// print-header-supertitle displays the "super" title (i.e. "RESEARCH") in the
+// page header.
 #let print-header-supertitle(supertitle) = {
 	set text(font: font-sans-serif, size: 5.6pt, fill: titcolor, tracking: 0.4pt)
 	//show text: smallcaps // TODO: figure out how to fix (need Cap version of font)?
@@ -24,17 +30,20 @@
 	supertitle
 }
 
+// print-title displays the title of the paper.
 #let print-title(title) = {
 	set text(font: font-sans-serif, size: 18pt)
 	block(title)
 }
 
+// print-authors displays the list of authors.
 #let print-authors(authors) = {
 	set text(font: font-sans-serif, size: 12pt)
 	show text: strong
 	block(authors.join(", ", last: " and "))
 }
 
+// print-availability displays an availability notice.
 #let print-availability(title, body) = {
 	set text(font: font-sans-serif, size: 7pt)
 	block(
@@ -45,14 +54,17 @@
 	body
 }
 
+// data-availability displays a data availability notice.
 #let data-availability(body) = {
 	print-availability("Data", body)
 }
 
+// code-availability displays a code availability notice.
 #let code-availability(body) = {
 	print-availability("Code", body)
 }
 
+// template applies the CoB research paper format to the document.
 #let template(
 	supertitle:   "Research Article",
 	title:        "Paper Title",
@@ -109,17 +121,16 @@
 		header-ascent: 30%,
 	)
 
+	// Set heading styles.
 	show heading.where(level: 1): it => {
 		set text(font: font-sans-serif, size: 8.5pt)
 		show text: upper
 		it
 	}
-
 	show heading.where(level: 2): it => {
 		set text(font: font-sans-serif, size: 8.5pt)
 		it
 	}
-
 	show heading.where(level: 3): it => {
 		//set text(font: font-serif, size: 9.4pt)
 		set text(weight: "regular") // disable bold
@@ -127,8 +138,10 @@
 		it
 	}
 
+	// Set default font and text size.
 	set text(font: font-serif, size: 9.4pt)
 
+	// Set line height and justification of paragraphs.
 	set par(
 		justify: true,
 		first-line-indent: 1.2em,
@@ -140,8 +153,10 @@
 	show link: set text(fill: linkblue)
 	show cite: set text(fill: linkblue)
 
+	// Set bibliography title.
 	set bibliography(title: "References")
 
+	// HACK to insert "Received date" before footnote entry list.
 	show footnote.entry: it => {
 		let loc = it.note.location()
 		if counter(footnote).at(loc).first() == 1 {
@@ -154,14 +169,19 @@
 		it
 	}
 
+	// Style footnote links.
 	show footnote: set text(fill: linkblue)
 
-	show quote: set pad(x: 2em)
-	show quote: set block(above: 1.3em)
+	// Style tables.
+	show figure.where(kind: table): block.with(above: 1em)
+	show figure.where(kind: table): set figure.caption(position: top, separator: ". ")
+	set table(
+		stroke: none,
+		inset: (x: 5pt, y: 2pt),
+	)
+	set table.hline(stroke: 0.3pt)
 
-	show: cellpress.style-table
-
-	// apply figure and subfigure styles
+	// Apply figure and subfigure styles.
 	show: hallon.style-figures
 
 	// Use short supplement for figures and subfigures (place after
@@ -177,9 +197,10 @@
 	// - independent style: https://www.zotero.org/styles/the-rockefeller-university-press
 	set bibliography(style: "the-rockefeller-university-press.csl")
 
+	// Set space between columns.
 	set columns(gutter: 0.5cm)
 
-	// title and authors
+	// Display title and authors.
 	place(
 		top+left,
 		scope: "parent",
@@ -194,6 +215,6 @@
 		#v(0.78cm)
 	]
 
-	// body
+	// Display body.
 	body
 }
