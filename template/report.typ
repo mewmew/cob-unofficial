@@ -1,4 +1,4 @@
-#import "@preview/cob-unofficial:0.1.0" as cob
+#import "@preview/cob-unofficial:0.1.1" as cob
 
 #show: cob.template.with(
 	title:   "Paper Title",
@@ -7,6 +7,14 @@
 	//article-year: datetime.today().year(), // Copyright year.
 	//date:         datetime.today(),        // Received date.
 )
+
+// === [ Abstract ] ============================================================
+
+#cob.abstract(
+	keywords: ("stem cell", "Yamanaka factors"),
+)[
+	#lorem(30)
+]
 
 // === [ Introduction ] ========================================================
 

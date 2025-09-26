@@ -54,6 +54,19 @@
 	body
 }
 
+#let abstract(body, keywords: none) = {
+	set text(font: font-sans-serif)
+	set text(size: 9pt)
+	block(sticky: true)[#strong[ABSTRACT]]
+	line(length: 100%, stroke: 0.5pt)
+	block(below: 3mm, body)
+	if keywords != none {
+		set text(size: 7.9pt)
+		strong[KEYWORDS: #keywords.join(", ")]
+	}
+	line(length: 100%, stroke: 1pt)
+}
+
 // data-availability displays a data availability notice.
 #let data-availability(body) = {
 	print-availability("Data", body)
