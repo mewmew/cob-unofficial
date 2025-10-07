@@ -92,6 +92,7 @@
 	date:         datetime.today(),
 	body
 ) = {
+	set document(title: title)
 	set page(
 		"us-letter",
 		margin: (
