@@ -35,6 +35,7 @@
 #lorem(45)
 
 #figure(
+	caption: lorem(5),
 	table(
 		columns: 3,
 		table.hline(),
@@ -45,7 +46,6 @@
 		[a], [b], [c],
 		table.hline(),
 	),
-	caption: lorem(5),
 )
 
 // === [ Discussion ] ==========================================================

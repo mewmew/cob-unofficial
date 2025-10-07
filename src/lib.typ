@@ -38,9 +38,13 @@
 
 // print-authors displays the list of authors.
 #let print-authors(authors) = {
+	let authors-str = authors
+	if type(authors) == array {
+		authors-str = authors.join(", ", last: " and ")
+	}
 	set text(font: font-sans-serif, size: 12pt)
 	show text: strong
-	block(authors.join(", ", last: " and "))
+	block(authors-str)
 }
 
 // print-availability displays an availability notice.
@@ -54,6 +58,7 @@
 	body
 }
 
+// abstract displays the given abstract with an optional list of keywords.
 #let abstract(body, keywords: none) = {
 	set text(font: font-sans-serif)
 	set text(size: 9pt)
