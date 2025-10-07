@@ -12,3 +12,7 @@ See [template/report.typ](template/report.typ).
 
 * [CoB Manuscript preparation](https://journals.biologists.com/dev/pages/manuscript-prep)
 * [CoB LaTeX template](https://journals.biologists.com/DocumentLibrary/DEV/DEV_latex_template.zip)
+
+## Logo
+
+The copyright of the [logo](inc/COB_Publisher_Logo.pdf) is held by The Company of Biologists.
