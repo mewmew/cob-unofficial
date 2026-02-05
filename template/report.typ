@@ -1,4 +1,4 @@
-#import "@preview/cob-unofficial:0.1.1" as cob
+#import "@preview/cob-unofficial:0.1.2" as cob
 
 #show: cob.template.with(
 	title:   "Paper Title",
