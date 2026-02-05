@@ -82,6 +82,42 @@
 	print-availability("Code", body)
 }
 
+// page-header holds the default page header content of CoB articles.
+#let page-header(supertitle, article-id, article-year, logo: box(
+	inset: (bottom: -0.175cm),
+	image("/inc/COB_Publisher_Logo.pdf"),
+)) = context [
+	#if here().page() == 1 [
+		#set text(font: font-sans-serif, size: 7pt)
+		#rect(
+			stroke: (bottom: 0.5pt + black),
+			width: 100%,
+			inset: (x: 0pt, y: 1.02em),
+		)[
+			#stack(
+				dir: ltr,
+				[© #{article-year}. MANUSCRIPT SUBMITTED TO JOURNAL OF CELL SCIENCE (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
+				h(1fr),
+				logo,
+			)
+		]
+		#v(-0.3mm)
+	] else [
+		#rect(
+			stroke: (bottom: 0.5pt + black),
+			width: 100%,
+			inset: (x: 0pt, y: 0.7em)
+		)[
+			#stack(
+				dir: ltr,
+				print-header-supertitle(supertitle),
+				h(1fr),
+				text(font: font-serif, size: 7pt)[Journal of Cell Science (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
+			)
+		]
+	]
+]
+
 // template applies the CoB research paper format to the document.
 #let template(
 	supertitle:   "Research Article",
@@ -90,6 +126,7 @@
 	article-id:   "xxxxxx",
 	article-year: datetime.today().year(),
 	date:         datetime.today(),
+	page-header:  page-header,
 	body
 ) = {
 	set document(title: title)
@@ -101,42 +138,7 @@
 			top: 2.38cm,
 		),
 		columns: 2,
-		header: context [
-			#if here().page() == 1 [
-				#set text(font: font-sans-serif, size: 7pt)
-				#rect(
-					stroke: (bottom: 0.5pt + black),
-					width: 100%,
-					inset: (x: 0pt, y: 1.02em),
-				)[
-					#stack(
-						dir: ltr,
-						[© #{article-year}. MANUSCRIPT SUBMITTED TO JOURNAL OF CELL SCIENCE (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
-						h(1fr),
-						box(
-							inset: (bottom: -0.175cm),
-							// TODO: use PDF version of logo when Typst 0.14.0 is released.
-							image("/inc/COB_Publisher_Logo.svg"),
-						),
-					)
-				]
-				#v(-0.3mm)
-			] else [
-				#rect(
-					stroke: (bottom: 0.5pt + black),
-					width: 100%,
-					inset: (x: 0pt, y: 0.7em)
-				)[
-					#stack(
-						dir: ltr,
-						print-header-supertitle(supertitle),
-						h(1fr),
-						text(font: font-serif, size: 7pt)[Journal of Cell Science (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
-					)
-
-				]
-			]
-		],
+		header: page-header(supertitle, article-id, article-year),
 		header-ascent: 30%,
 	)
 
