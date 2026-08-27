@@ -120,18 +120,19 @@
 
 // template applies the CoB research paper format to the document.
 #let template(
-	supertitle:   "Research Article",
-	title:        "Paper Title",
-	authors:      ("John Doe", "Jane Rue"),
-	article-id:   "xxxxxx",
-	article-year: datetime.today().year(),
-	date:         datetime.today(),
-	page-header:  page-header,
+	paper:         "us-letter",
+	supertitle:    "Research Article",
+	title:         "Paper Title",
+	authors:       ("John Doe", "Jane Rue"),
+	article-id:    "xxxxxx",
+	article-year:  datetime.today().year(),
+	date-received: datetime.today(),
+	page-header:   page-header,
 	body
 ) = {
 	set document(title: title)
 	set page(
-		"us-letter",
+		paper: paper,
 		margin: (
 			inside: 1.685cm,
 			outside: 1.77cm,
@@ -179,13 +180,15 @@
 
 	// HACK to insert "Received date" before footnote entry list.
 	show footnote.entry: it => {
-		let loc = it.note.location()
-		if counter(footnote).at(loc).first() == 1 {
-			set text(size: 8pt)
-			block(
-				above: 0.5em,
-				strong[Received #date.display("[day] [month repr:long] [year]")]
-			)
+		if date-received != none {
+			let loc = it.note.location()
+			if counter(footnote).at(loc).first() == 1 {
+				set text(size: 8pt)
+				block(
+					above: 0.5em,
+					strong[Received #date-received.display("[day] [month repr:long] [year]")]
+				)
+			}
 		}
 		it
 	}

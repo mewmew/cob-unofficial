@@ -1,11 +1,12 @@
-#import "@preview/cob-unofficial:0.1.2" as cob
+#import "@preview/cob-unofficial:0.1.3" as cob
 
 #show: cob.template.with(
-	title:   "Paper Title",
-	authors: ("John Doe", "Jane Rue"),
-	//article-id:   "123456",
-	//article-year: datetime.today().year(), // Copyright year.
-	//date:         datetime.today(),        // Received date.
+	//supertitle:    "Research Article",
+	title:         "Paper Title",
+	authors:       ("John Doe", "Jane Rue"),
+	//article-id:    "123456",
+	//article-year:  datetime.today().year(), // Copyright year.
+	//date-received: datetime.today(),        // Received date.
 )
 
 // === [ Abstract ] ============================================================
