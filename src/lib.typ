@@ -86,9 +86,12 @@
 #let page-header(supertitle, article-id, article-year, logo: box(
 	inset: (bottom: -0.175cm),
 	image("/inc/COB_Publisher_Logo.pdf"),
-)) = context [
+), text-first-page: none, text-other-pages: none) = context [
 	#if here().page() == 1 [
-		#set text(font: font-sans-serif, size: 7pt)
+		#let text-first-page-str = [© #{article-year}. MANUSCRIPT SUBMITTED TO JOURNAL OF CELL SCIENCE (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)]
+		#if text-first-page != none {
+			text-first-page-str = text-first-page
+		}
 		#rect(
 			stroke: (bottom: 0.5pt + black),
 			width: 100%,
@@ -96,13 +99,20 @@
 		)[
 			#stack(
 				dir: ltr,
-				[© #{article-year}. MANUSCRIPT SUBMITTED TO JOURNAL OF CELL SCIENCE (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
+				[
+					#set text(font: font-sans-serif, size: 7pt)
+					#text-first-page-str
+				],
 				h(1fr),
 				logo,
 			)
 		]
 		#v(-0.3mm)
 	] else [
+		#let text-other-pages-str = [Journal of Cell Science (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)]
+		#if text-other-pages != none {
+			text-other-pages-str = text-other-pages
+		}
 		#rect(
 			stroke: (bottom: 0.5pt + black),
 			width: 100%,
@@ -112,7 +122,10 @@
 				dir: ltr,
 				print-header-supertitle(supertitle),
 				h(1fr),
-				text(font: font-serif, size: 7pt)[Journal of Cell Science (#{article-year}) 00, jcs#{article-id}. doi:#link("https://doi.org/10.1242/jcs."+article-id, "10.1242/jcs."+article-id)],
+				[
+					#set text(font: font-serif, size: 7pt)
+					#text-other-pages-str
+				],
 			)
 		]
 	]
