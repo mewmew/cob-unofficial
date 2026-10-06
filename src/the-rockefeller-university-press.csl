@@ -99,6 +99,7 @@
             <text macro="editor"/>
             <text macro="publisher"/>
             <text variable="number-of-pages" suffix=" pp"/>
+            <text prefix="doi:" variable="DOI"/>
           </group>
         </if>
         <else-if type="chapter paper-conference" match="any">
@@ -111,6 +112,7 @@
             <text macro="editor"/>
             <text macro="publisher"/>
             <text variable="page"/>
+            <text prefix="doi:" variable="DOI"/>
           </group>
         </else-if>
         <else>
