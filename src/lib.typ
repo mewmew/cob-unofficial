@@ -226,6 +226,7 @@
 	// effect).
 	show figure.where(kind: image): set figure(supplement: "Fig.")
 	show figure.where(kind: image): set figure.caption(separator: [. ])
+	show figure.where(kind: image): block.with(above: 1em, below: 1.5em)
 	show figure.where(kind: "subfigure"): set figure(supplement: "Fig.")
 
 	// https://rupress.org/jcb/pages/reference-guidelines
