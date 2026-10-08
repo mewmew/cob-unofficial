@@ -199,7 +199,7 @@
 				set text(size: 8pt)
 				block(
 					above: 0.5em,
-					strong[Received #date-received.display("[day] [month repr:long] [year]")]
+					strong[Received #date-received.display("[day padding:none] [month repr:long] [year]")]
 				)
 			}
 		}
