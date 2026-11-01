@@ -141,6 +141,7 @@
 	article-year:  datetime.today().year(),
 	date-received: datetime.today(),
 	page-header:   page-header,
+	page-columns:  2,
 	body
 ) = {
 	set document(title: title)
@@ -151,7 +152,7 @@
 			outside: 1.77cm,
 			top: 2.38cm,
 		),
-		columns: 2,
+		columns: page-columns,
 		header: page-header(supertitle, article-id, article-year),
 		header-ascent: 30%,
 	)
