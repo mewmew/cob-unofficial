@@ -8,6 +8,7 @@ description = "Unofficial CoB (The Company of Biologists) template for Typst."
 repository = "https://github.com/mewmew/cob-unofficial"
 categories = ["paper"]
 disciplines = ["biology", "chemistry", "medicine"]
+compiler = "0.14.0"
 exclude = ["/inc/thumbnail.png"]
 
 [template]
